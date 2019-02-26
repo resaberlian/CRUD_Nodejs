@@ -1,47 +1,45 @@
 <%- include ../layouts/header.ejs %>
 <% if (messages.error) { %>
-    <p style="color:red"><%- messages.error %></p>
-<% } %>
-<% if (messages.success) { %>
+  <p style="color:red"><%- messages.error %></p>
+  <% } %>
+  <% if (messages.success) { %>
     <p style="color:green"><%- messages.success %> </p>
-<% } %>
-
-    
-</form>
-<div class="modal-dialog">
-    <div class="modal-content">
+    <% } %>
+    <div class="modal-dialog">
+      <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-titile">Tambah Buku</h4>
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-titile">Tambah Buku</h4>
         </div>
         <div class="modal-body">
-                <form action="/users/add" method="post" name="form1">
-                <table>
-                  <tr>
-                    <td>Judul Buku</td>
-                    <td><input type="text" name="judul_buku" required class="form-control" value="<%= judul_buku %>"></td>
-                  </tr>
-                  <tr>
-                    <td>Tahun</td>
-                    <td><input type="number" name="tahun" required class="form-control" value="<%= tahun %>"></td>
-                  </tr>
-                  <tr>
-                    <td>Harga</td>
-                    <td><input type="number" name="harga" required class="form-control" value="<%= harga %>"></td>
-                  </tr>
-                  <tr>
-                    <td>Penerbit</td>
-                    <td><input type="text" name="penerbit" required class="form-control" value="<%= penerbit %>"></td>
-                  </tr>
-                  <tr>
-                    <td>Penulis</td>
-                    <td><input type="text" name="penulis" required class="form-control" value="<%= penulis %>"></td>
-                  </tr>
-                  <tr>
-                    <td>Stok</td>
-                    <td><input type="number" name="stok" required class="form-control"value="<%= stok %>"></td>
-                  </tr>
-                </table>
-                <input type="submit" name="create" value="Simpan" class="btn btn-success">
-              </form>
-            </div>
+          <form action="/users/add" method="post" name="form1">
+            <table>
+              <tr>
+                <td>Judul Buku</td>
+                <td><input type="text" name="judul_buku" required class="form-control" value="<%= judul_buku %>"></td>
+              </tr>
+              <tr>
+                <td>Tahun</td>
+                <td><input type="number" name="tahun" required class="form-control" value="<%= tahun %>"></td>
+              </tr>
+              <tr>
+                <td>Harga</td>
+                <td><input type="number" name="harga" required class="form-control" value="<%= harga %>"></td>
+              </tr>
+              <tr>
+                <td>Penerbit</td>
+                <td><input type="text" name="penerbit" required class="form-control" value="<%= penerbit %>"></td>
+              </tr>
+              <tr>
+                <td>Penulis</td>
+                <td><input type="text" name="penulis" required class="form-control" value="<%= penulis %>"></td>
+              </tr>
+              <tr>
+                <td>Stok</td>
+                <td><input type="number" name="stok" required class="form-control"value="<%= stok %>"></td>
+              </tr>
+            </table>
+            <input type="submit" name="create" value="Simpan" class="btn btn-success">
+          </form>
+        </div>
+<%- include ../layouts/footer.ejs %>

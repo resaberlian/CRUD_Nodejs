@@ -2,12 +2,7 @@ const express = require('express')
 const app = express()
 const ObjectId = require('mongodb').ObjectId
 
-app.get('/', function(req,res){
-    // render to views/index.ejs template file
-    res.render('./index', {tittle: 'XIR6'})
-})
-
-//Tampilkan Data 
+//Tampilkan Data    
 app.get('/tampil' , function(req,res, next){
     //mengambil data dari database secara decending
     req.db.collection('coba').find().sort({"_id": -1}).toArray(function(err,result){
@@ -200,6 +195,7 @@ app.put('/edit/(:id)', function(req,res,next){
     }
 })
 
+
 //DELETE USER
 app.delete('/delete/:id',function(req,res , next){
     var o_id = new ObjectId(req.params.id)
@@ -215,5 +211,31 @@ app.delete('/delete/:id',function(req,res , next){
         }
     })
 })
-
+      
+//GET DETAIL
+app.get('/detail/(:id)' , function(req,res, next){
+    //mengambil data dari database secara decending
+    var o_id = new ObjectId(req.params.id)
+    req.db.collection('coba').find({"_id": o_id}).toArray(function(err,result){
+        if(err) return console.log(err)
+        //jika data tidak ada 
+        if (!result){
+            req.flash('error', 'User not found with id = ' + req.params.id)
+            res.redirect('/users')
+        }
+        else { //jika data ada 
+            //tampilkan views/user/edit.ejs
+            res.render('user/detail', {
+                tittle: 'Detail',
+                id: result[0]._id,
+                judul_buku: result[0].judul_buku,
+                tahun: result[0].tahun,
+                harga: result[0].harga,
+                penerbit: result[0].penerbit, 
+                penulis: result[0].penulis,
+                stok: result[0].stok
+            })
+        }
+    })
+})
 module.exports = app
